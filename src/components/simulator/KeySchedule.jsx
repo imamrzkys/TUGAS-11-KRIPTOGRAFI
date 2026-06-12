@@ -17,7 +17,7 @@ export function KeySchedule() {
         <div className="flex flex-col items-center justify-center py-12 text-black/40">
           <Key className="w-12 h-12 stroke-[3px] mb-4" />
           <p className="font-grotesk font-bold uppercase tracking-wider">
-            Run the simulation to generate Key Schedule
+          Jalankan simulasi untuk menghasilkan Key Schedule / Penjadwalan Kunci
           </p>
         </div>
       </NeoCard>

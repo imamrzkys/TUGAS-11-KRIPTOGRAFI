@@ -23,8 +23,16 @@ export function HeroSection() {
           transition={{ duration: 0.4, delay: 0.1, ease: 'easeOut' }}
           className="font-grotesk font-extrabold text-sm sm:text-lg text-black/70 mt-3 max-w-xl uppercase"
         >
-          Simulator Interaktif untuk Visualisasi Penjadwalan Kunci (Key Schedule), Jaringan Feistel, dan Substitusi S-Box.
+          Simulator Interaktif Algoritma DES — Visualisasi Key Schedule, Jaringan Feistel & Substitusi S-Box.
         </motion.p>
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.2, ease: 'easeOut' }}
+          className="font-mono text-[10px] text-black/50 mt-2 uppercase tracking-widest"
+        >
+          Imam Rizki Saputra · Teknik Informatika UNIBBA · Kriptografi 2026
+        </motion.div>
       </div>
 
       {/* Badges Column */}

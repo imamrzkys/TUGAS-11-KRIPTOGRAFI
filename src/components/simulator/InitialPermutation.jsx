@@ -14,7 +14,7 @@ export function InitialPermutation() {
         <div className="flex flex-col items-center justify-center py-12 text-black/40">
           <ShieldAlert className="w-12 h-12 stroke-[3px] mb-4" />
           <p className="font-grotesk font-bold uppercase tracking-wider">
-            Run the simulation to view Initial Permutation (IP)
+            Jalankan simulasi untuk melihat Initial Permutation / Permutasi Awal (IP)
           </p>
         </div>
       </NeoCard>
