@@ -2,28 +2,35 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 /**
- * Neubrutalist Hero Header with rotating typewriter animation (3 phrases, 3 lines each)
+ * Neubrutalist Hero Header with smooth rotating typewriter animation (2 lines, max 5 chars each)
  */
 export function HeroSection() {
   const [displayedText, setDisplayedText] = useState('');
   const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   
-  // 3 judul menarik, masing-masing 3 baris pendek (pas untuk mobile)
+  // Banyak judul menarik, 2 kata (max 5 huruf per kata) - pas untuk mobile
   const phrases = [
-    ['DATA', 'ENCRYPTION', 'STANDARD'],
-    ['DIGITAL', 'SECURITY', 'SYSTEM'],
-    ['CRYPTO', 'ALGORITHM', 'TOOL']
+    ['CYBER', 'SAFE'],
+    ['DATA', 'LOCK'],
+    ['CODE', 'GUARD'],
+    ['BLOCK', 'CHAIN'],
+    ['PIXEL', 'VAULT'],
+    ['HASH', 'POWER'],
+    ['BYTE', 'ARMOR'],
+    ['AGENT', 'ZERO'],
+    ['LOGIC', 'WALL'],
+    ['NINJA', 'CRYPT']
   ];
   
   useEffect(() => {
     const currentPhrase = phrases[currentPhraseIndex];
     const fullText = currentPhrase.join('\n');
     
-    const typingSpeed = 80; // Kecepatan ngetik (80ms per karakter - halus)
-    const deleteSpeed = 40; // Kecepatan hapus (40ms per karakter - lebih cepat)
-    const pauseAfterTyping = 3000; // Pause 3 detik setelah selesai ngetik
-    const pauseAfterDeleting = 500; // Pause 0.5 detik setelah selesai hapus
+    const typingSpeed = 120; // Lebih lambat (120ms per karakter - smooth)
+    const deleteSpeed = 60; // Lebih lambat juga saat hapus (60ms)
+    const pauseAfterTyping = 3500; // Pause 3.5 detik setelah selesai ngetik (lebih lama)
+    const pauseAfterDeleting = 800; // Pause 0.8 detik setelah selesai hapus
     
     const timeout = setTimeout(() => {
       if (!isDeleting) {
