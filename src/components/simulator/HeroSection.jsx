@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 /**
  * Neubrutalist Hero Header with smooth rotating typewriter animation (2 lines, max 5 chars each)
@@ -8,6 +8,7 @@ export function HeroSection() {
   const [displayedText, setDisplayedText] = useState('');
   const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   
   // Banyak judul menarik, 2 kata (max 5 huruf per kata) - pas untuk mobile
   const phrases = [
@@ -24,13 +25,15 @@ export function HeroSection() {
   ];
   
   useEffect(() => {
+    if (isTransitioning) return; // Skip saat transisi
+    
     const currentPhrase = phrases[currentPhraseIndex];
     const fullText = currentPhrase.join('\n');
     
-    const typingSpeed = 120; // Lebih lambat (120ms per karakter - smooth)
-    const deleteSpeed = 60; // Lebih lambat juga saat hapus (60ms)
-    const pauseAfterTyping = 3500; // Pause 3.5 detik setelah selesai ngetik (lebih lama)
-    const pauseAfterDeleting = 800; // Pause 0.8 detik setelah selesai hapus
+    const typingSpeed = 150; // Lebih lambat lagi (150ms per karakter - sangat smooth)
+    const deleteSpeed = 70; // Lebih lambat saat hapus (70ms - smooth)
+    const pauseAfterTyping = 4000; // Pause 4 detik setelah selesai ngetik
+    const transitionDelay = 1000; // Delay 1 detik untuk transisi bersih
     
     const timeout = setTimeout(() => {
       if (!isDeleting) {
@@ -46,31 +49,41 @@ export function HeroSection() {
         if (displayedText.length > 0) {
           setDisplayedText(displayedText.slice(0, -1));
         } else {
-          // Selesai hapus, pause sebentar lalu pindah ke judul berikutnya
+          // Selesai hapus, transisi bersih ke judul berikutnya
+          setIsTransitioning(true);
           setIsDeleting(false);
+          
           setTimeout(() => {
             setCurrentPhraseIndex((prev) => (prev + 1) % phrases.length);
-          }, pauseAfterDeleting);
+            setDisplayedText(''); // Pastikan bersih
+            setIsTransitioning(false);
+          }, transitionDelay);
         }
       }
     }, isDeleting ? deleteSpeed : (displayedText.length === fullText.length ? 0 : typingSpeed));
     
     return () => clearTimeout(timeout);
-  }, [displayedText, isDeleting, currentPhraseIndex]);
+  }, [displayedText, isDeleting, currentPhraseIndex, isTransitioning]);
 
   return (
     <section className="relative w-full py-8 md:py-12 border-b-4 border-black bg-brutal-cream overflow-hidden px-6 md:px-12 flex flex-col md:flex-row md:items-center justify-between gap-8 md:gap-12">
       {/* Title */}
       <div className="flex-1 max-w-2xl">
-        <motion.h2
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.35, ease: 'easeOut' }}
-          className="font-syne font-black text-5xl sm:text-7xl lg:text-8xl leading-[0.9] tracking-tighter uppercase text-black select-none whitespace-pre-line"
-        >
-          {displayedText}
-          <span className="inline-block w-1 h-[0.9em] bg-black ml-1 animate-pulse align-middle"></span>
-        </motion.h2>
+        <AnimatePresence mode="wait">
+          <motion.h2
+            key={currentPhraseIndex}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            className="font-syne font-black text-5xl sm:text-7xl lg:text-8xl leading-[0.9] tracking-tighter uppercase text-black select-none whitespace-pre-line min-h-[2em]"
+          >
+            {displayedText}
+            {!isTransitioning && (
+              <span className="inline-block w-1 h-[0.9em] bg-black ml-1 animate-pulse align-middle"></span>
+            )}
+          </motion.h2>
+        </AnimatePresence>
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
