@@ -149,8 +149,7 @@ export function Home() {
 
             {/* Persistent Developer Watermark Banner */}
             <div className="border-3 border-black p-4 bg-brutal-yellow shadow-brutal-sm font-mono text-center leading-relaxed text-xs uppercase text-black" style={{ border: '3px solid #000000', borderRadius: '0px' }}>
-              📚 DES Simulator Watermark:<br />
-              <strong className="text-black font-black">imam rizki saputra des - 2026</strong> | teknik informatika universitas bale bandung kriptografi
+              <strong className="text-black font-black">imam rizki saputra des - 2026</strong> | <strong className="text-black font-black">teknik informatika universitas bale bandung kriptografi</strong>
             </div>
 
           </div>
