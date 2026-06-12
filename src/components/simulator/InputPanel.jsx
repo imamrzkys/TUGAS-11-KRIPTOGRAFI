@@ -92,7 +92,7 @@ export function InputPanel() {
 
             {validationErrors.plaintext ? (
               <p className="text-xs font-mono font-extrabold text-brutal-coral uppercase">
-                ⚠️ {validationErrors.plaintext}
+                {validationErrors.plaintext}
               </p>
             ) : (
               <p className="text-xs font-mono font-bold text-black/40 uppercase">
@@ -162,7 +162,7 @@ export function InputPanel() {
 
             {validationErrors.key ? (
               <p className="text-xs font-mono font-extrabold text-brutal-coral uppercase">
-                ⚠️ {validationErrors.key}
+                {validationErrors.key}
               </p>
             ) : (
               <p className="text-xs font-mono font-bold text-black/40 uppercase">
@@ -210,13 +210,13 @@ export function InputPanel() {
             onClick={() => setMode('encrypt')}
             className={`px-6 py-2.5 font-grotesk font-black uppercase text-sm flex items-center gap-2 transition-colors ${mode === 'encrypt' ? 'bg-brutal-purple text-black' : 'bg-brutal-white text-black/40'}`}
           >
-            🛡️ ENKRIPSI
+            ENKRIPSI
           </button>
           <button
             onClick={() => setMode('decrypt')}
             className={`px-6 py-2.5 font-grotesk font-black uppercase text-sm flex items-center gap-2 transition-colors ${mode === 'decrypt' ? 'bg-brutal-coral text-black' : 'bg-brutal-white text-black/40'}`}
           >
-            🔓 DEKRIPSI
+            DEKRIPSI
           </button>
         </div>
       </motion.div>

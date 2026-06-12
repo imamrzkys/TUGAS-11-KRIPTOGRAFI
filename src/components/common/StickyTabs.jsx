@@ -13,7 +13,7 @@ export function StickyTabs({
   return (
     <div 
       className={`
-        sticky top-[80px] z-30 w-full bg-brutal-white border-b-4 border-black px-6 py-4
+        sticky top-[80px] z-30 w-full bg-brutal-white border-b-4 border-black px-4 py-3 sm:px-6 sm:py-4
         flex items-center gap-3 overflow-x-auto whitespace-nowrap horizontal-scroll
         shadow-[0_4px_0_#000] select-none
         ${className}
@@ -30,7 +30,7 @@ export function StickyTabs({
               key={tab.id}
               onClick={() => onTabClick && onTabClick(tab.id)}
               className={`
-                px-4 py-2 border-3 border-black font-grotesk font-black text-xs uppercase
+                px-3 py-1.5 sm:px-4 sm:py-2 border-3 border-black font-grotesk font-black text-[10px] sm:text-xs uppercase
                 transition-all duration-75 select-none
                 ${isActive 
                   ? 'bg-brutal-yellow translate-y-0.5 shadow-none text-black font-extrabold' 

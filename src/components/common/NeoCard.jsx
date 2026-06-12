@@ -52,7 +52,7 @@ export function NeoCard({
     >
       {/* Optional Header */}
       {title && (
-        <div className="flex justify-between items-center px-5 py-3 border-b-3 border-black bg-brutal-surface">
+        <div className="flex justify-between items-center px-4 py-2.5 sm:px-5 sm:py-3 border-b-3 border-black bg-brutal-surface">
           <h4 className="font-grotesk font-bold text-base uppercase tracking-wider text-black select-none">
             {title}
           </h4>
@@ -61,7 +61,7 @@ export function NeoCard({
       )}
       
       {/* Content */}
-      <div className="p-5 flex-grow">
+      <div className="p-4 sm:p-5 flex-grow">
         {children}
       </div>
     </div>

@@ -6,8 +6,8 @@ const DEFAULT_PLAINTEXT = '0123456789ABCDEF';
 const DEFAULT_KEY = '133457799BBCDFF1';
 
 export const useDESStore = create((set, get) => ({
-  plaintext: DEFAULT_PLAINTEXT,
-  key: DEFAULT_KEY,
+  plaintext: '',
+  key: '',
   mode: 'encrypt', // 'encrypt' | 'decrypt'
   plaintextFormat: 'hex', // 'hex' | 'bin'
   keyFormat: 'hex', // 'hex' | 'bin'
@@ -220,8 +220,8 @@ export const useDESStore = create((set, get) => ({
 
   reset: () => {
     set({
-      plaintext: DEFAULT_PLAINTEXT,
-      key: DEFAULT_KEY,
+      plaintext: '',
+      key: '',
       mode: 'encrypt',
       plaintextFormat: 'hex',
       keyFormat: 'hex',

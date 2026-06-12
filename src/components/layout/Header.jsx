@@ -6,14 +6,14 @@ export function Header() {
   const { result, mode } = useDESStore();
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-brutal-yellow border-b-4 border-black px-6 py-4 flex items-center justify-between select-none shadow-[0_4px_0_#000]">
+    <header className="sticky top-0 z-50 w-full bg-brutal-yellow border-b-4 border-black px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between select-none shadow-[0_4px_0_#000]">
       {/* Title / Logo */}
       <div className="flex items-center gap-3">
         <div className="w-10 h-10 bg-black flex items-center justify-center border-2 border-black text-brutal-yellow shadow-brutal-sm">
           <Terminal className="w-6 h-6 stroke-[3px]" />
         </div>
         <div>
-          <h1 className="font-syne font-black text-2xl tracking-tighter leading-none text-black">
+          <h1 className="font-syne font-black text-xl sm:text-2xl tracking-tighter leading-none text-black">
             DES_SIMULATOR
           </h1>
           <span className="font-mono text-[9px] uppercase tracking-widest font-black text-black/50">
@@ -32,7 +32,7 @@ export function Header() {
 
         {/* Mode badge */}
         <div className={`
-          hidden md:flex items-center gap-2 px-3.5 py-1.5 border-3 border-black text-xs font-grotesk font-black uppercase shadow-brutal-sm
+          hidden md:flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 border-3 border-black text-[10px] sm:text-xs font-grotesk font-black uppercase shadow-brutal-sm
           ${mode === 'encrypt' ? 'bg-brutal-purple' : 'bg-brutal-coral'}
         `}>
           <Shield className="w-3.5 h-3.5 stroke-[3px]" />
@@ -41,7 +41,7 @@ export function Header() {
 
         {/* Status indicator */}
         <div className={`
-          flex items-center gap-2 px-3.5 py-1.5 border-3 border-black text-xs font-grotesk font-black uppercase shadow-brutal-sm
+          flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 border-3 border-black text-[10px] sm:text-xs font-grotesk font-black uppercase shadow-brutal-sm
           ${result ? 'bg-brutal-green text-black' : 'bg-brutal-cream text-black/40'}
         `}>
           <span className={`w-2.5 h-2.5 border-2 border-black ${result ? 'bg-black animate-pulse' : 'bg-transparent'}`}></span>

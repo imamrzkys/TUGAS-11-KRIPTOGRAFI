@@ -28,7 +28,7 @@ export function Sidebar({ activeSection = 'input', onSectionClick }) {
         {/* Watermark Box */}
         <div className="border-3 border-black p-4 bg-brutal-yellow/20 space-y-1 text-[9px] font-mono leading-tight">
           <div className="font-grotesk font-black text-xs uppercase text-black border-b border-black/10 pb-1 mb-1">
-            💻 INFO MAHASISWA
+            INFO MAHASISWA
           </div>
           <p className="font-black text-black">Imam Rizki Saputra</p>
           <p className="text-black/75">DES - 2026</p>

@@ -59,39 +59,39 @@ export function FooterActions() {
   return (
     <>
       {/* Mobile Sticky Bottom Bar */}
-      <div className="md:hidden fixed bottom-0 left-0 w-full z-40 bg-brutal-yellow border-t-4 border-black px-4 py-3 flex items-center justify-around gap-2 shadow-[0_-4px_0_#000]">
+      <div className="md:hidden fixed bottom-0 left-0 w-full z-40 bg-brutal-yellow border-t-4 border-black px-2 py-2 sm:px-4 sm:py-3 flex items-center justify-around gap-1 sm:gap-2 shadow-[0_-4px_0_#000]">
         <button
           onClick={runSimulation}
-          className="flex flex-col items-center justify-center bg-black text-brutal-yellow border-3 border-black py-1 px-2 flex-1 max-w-[100px] active:translate-x-[2px] active:translate-y-[2px]"
+          className="flex flex-col items-center justify-center bg-black text-brutal-yellow border-3 border-black py-1 px-1 sm:px-2 flex-1 max-w-[80px] sm:max-w-[100px] active:translate-x-[2px] active:translate-y-[2px]"
         >
-          <Play className="w-4 h-4 stroke-[3px]" />
-          <span className="font-grotesk font-black text-[9px] uppercase tracking-wider mt-0.5">MULAI</span>
+          <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[3px]" />
+          <span className="font-grotesk font-black text-[8px] sm:text-[9px] uppercase tracking-wider mt-0.5">MULAI</span>
         </button>
 
         <button
           onClick={reset}
-          className="flex flex-col items-center justify-center bg-brutal-white text-black border-3 border-black py-1 px-2 flex-1 max-w-[100px] active:translate-x-[2px] active:translate-y-[2px]"
+          className="flex flex-col items-center justify-center bg-brutal-white text-black border-3 border-black py-1 px-1 sm:px-2 flex-1 max-w-[80px] sm:max-w-[100px] active:translate-x-[2px] active:translate-y-[2px]"
         >
-          <RotateCcw className="w-4 h-4 stroke-[3px]" />
-          <span className="font-grotesk font-black text-[9px] uppercase tracking-wider mt-0.5">ULANG</span>
+          <RotateCcw className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[3px]" />
+          <span className="font-grotesk font-black text-[8px] sm:text-[9px] uppercase tracking-wider mt-0.5">ULANG</span>
         </button>
 
         <button
           onClick={reEncrypt}
           disabled={!result}
-          className="flex flex-col items-center justify-center bg-brutal-purple text-black border-3 border-black py-1 px-2 flex-1 max-w-[120px] disabled:opacity-40 active:translate-x-[2px] active:translate-y-[2px]"
+          className="flex flex-col items-center justify-center bg-brutal-purple text-black border-3 border-black py-1 px-1 sm:px-2 flex-1 max-w-[105px] sm:max-w-[120px] disabled:opacity-40 active:translate-x-[2px] active:translate-y-[2px]"
         >
-          <ShieldAlert className="w-4 h-4 stroke-[3px]" />
-          <span className="font-grotesk font-black text-[9px] uppercase tracking-wider mt-0.5">RE-ENKRIPSI</span>
+          <ShieldAlert className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[3px]" />
+          <span className="font-grotesk font-black text-[8px] sm:text-[9px] uppercase tracking-wider mt-0.5">RE-ENKRIPSI</span>
         </button>
 
         <button
           onClick={handleExportTXT}
           disabled={!result}
-          className="flex flex-col items-center justify-center bg-brutal-orange text-black border-3 border-black py-1 px-2 flex-1 max-w-[100px] disabled:opacity-40 active:translate-x-[2px] active:translate-y-[2px]"
+          className="flex flex-col items-center justify-center bg-brutal-orange text-black border-3 border-black py-1 px-1 sm:px-2 flex-1 max-w-[80px] sm:max-w-[100px] disabled:opacity-40 active:translate-x-[2px] active:translate-y-[2px]"
         >
-          <Download className="w-4 h-4 stroke-[3px]" />
-          <span className="font-grotesk font-black text-[9px] uppercase tracking-wider mt-0.5">EKSPOR</span>
+          <Download className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[3px]" />
+          <span className="font-grotesk font-black text-[8px] sm:text-[9px] uppercase tracking-wider mt-0.5">EKSPOR</span>
         </button>
       </div>
 

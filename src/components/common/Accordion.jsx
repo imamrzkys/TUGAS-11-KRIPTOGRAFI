@@ -44,7 +44,7 @@ export function Accordion({
       <button
         type="button"
         onClick={onToggle}
-        className="w-full text-left flex items-center justify-between px-5 py-4 border-b-3 border-black bg-brutal-surface select-none outline-none focus-visible:bg-brutal-purple/20 transition-colors"
+        className="w-full text-left flex items-center justify-between px-4 py-3 sm:px-5 sm:py-4 border-b-3 border-black bg-brutal-surface select-none outline-none focus-visible:bg-brutal-purple/20 transition-colors"
       >
         <div className="flex flex-wrap items-center gap-3">
           {headerBadge && (
@@ -81,7 +81,7 @@ export function Accordion({
             transition={{ duration: 0.2, ease: 'easeInOut' }}
             className="overflow-hidden"
           >
-            <div className="p-5 border-t-0 bg-brutal-white">
+            <div className="p-4 sm:p-5 border-t-0 bg-brutal-white">
               {children}
             </div>
           </motion.div>

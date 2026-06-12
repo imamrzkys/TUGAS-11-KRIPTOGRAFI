@@ -20,10 +20,7 @@ export function Home() {
   const [activeSection, setActiveSection] = useState('input');
   const [showScrollTop, setShowScrollTop] = useState(false);
 
-  // Run initial simulation on mount to display initial states
-  useEffect(() => {
-    runSimulation();
-  }, [runSimulation]);
+  // No initial simulation run on mount, wait for user input
 
   // Handle scroll spy to highlight active section in sidebar
   useEffect(() => {
@@ -86,21 +83,23 @@ export function Home() {
           <HeroSection />
 
           {/* STICKY NAVIGATION TABS */}
-          <StickyTabs
-            tabs={[
-              { id: 'input', label: 'Initialization' },
-              { id: 'keysched', label: 'Key Schedule' },
-              { id: 'ip', label: 'Initial IP' },
-              { id: 'rounds', label: 'Feistel Rounds' },
-              { id: 'ipinv', label: 'Inverse IP-1' },
-              { id: 'result', label: 'Final Result' }
-            ]}
-            activeTab={activeSection}
-            onTabClick={handleSectionClick}
-          />
+          {result && (
+            <StickyTabs
+              tabs={[
+                { id: 'input', label: 'Initialization' },
+                { id: 'keysched', label: 'Key Schedule' },
+                { id: 'ip', label: 'Initial IP' },
+                { id: 'rounds', label: 'Feistel Rounds' },
+                { id: 'ipinv', label: 'Inverse IP-1' },
+                { id: 'result', label: 'Final Result' }
+              ]}
+              activeTab={activeSection}
+              onTabClick={handleSectionClick}
+            />
+          )}
 
           {/* CONTENT PANELS */}
-          <div className="p-6 md:p-12 space-y-12 max-w-7xl mx-auto">
+          <div className="p-4 sm:p-6 md:p-12 space-y-12 max-w-7xl mx-auto">
             
             {/* Input fields */}
             <div id="input">
