@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useDESStore } from '../store/desStore.js';
 import { Header } from '../components/layout/Header.jsx';
 import { FooterActions } from '../components/layout/FooterActions.jsx';
-import { Sidebar } from '../components/layout/Sidebar.jsx';
 import { StickyTabs } from '../components/common/StickyTabs.jsx';
 import { HeroSection } from '../components/simulator/HeroSection.jsx';
 import { InputPanel } from '../components/simulator/InputPanel.jsx';
@@ -12,8 +11,6 @@ import { FeistelRounds } from '../components/simulator/FeistelRounds.jsx';
 import { InversePermutation } from '../components/simulator/InversePermutation.jsx';
 import { FinalCipher } from '../components/simulator/FinalCipher.jsx';
 import { ProcessingEngine } from '../components/simulator/ProcessingEngine.jsx';
-import { StepIndicator } from '../components/common/StepIndicator.jsx';
-import { NeoCard } from '../components/common/NeoCard.jsx';
 import { ChevronUp } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -70,14 +67,11 @@ export function Home() {
       <ProcessingEngine />
 
       {/* App Header */}
-      <Header />
+      <Header activeSection={activeSection} onSectionClick={handleSectionClick} />
 
       {/* Main Container */}
       <div className="flex-1 flex relative overflow-x-hidden">
         
-        {/* DESKTOP FIXED SIDEBAR NAVIGATION */}
-        <Sidebar activeSection={activeSection} onSectionClick={handleSectionClick} />
-
         {/* MAIN VISUAL WORKPLACE CONTAINER */}
         <main className="flex-1 min-w-0 overflow-x-hidden">
           
@@ -108,14 +102,7 @@ export function Home() {
               <InputPanel />
             </div>
 
-            {/* Mobile-only Simulation Pipeline Step Indicator */}
-            {result && (
-              <div className="block lg:hidden">
-                <NeoCard title="ALUR PIPELINE SIMULASI">
-                  <StepIndicator activeSection={activeSection} onSectionClick={handleSectionClick} />
-                </NeoCard>
-              </div>
-            )}
+
 
             {/* Desktop Action Buttons Row */}
             <div className="hidden md:block">

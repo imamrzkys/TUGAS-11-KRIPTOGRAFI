@@ -1,20 +1,39 @@
-import React from 'react';
-import { Terminal, Shield } from 'lucide-react';
+import React, { useState } from 'react';
+import { Menu, X, Shield, Terminal } from 'lucide-react';
 import { useDESStore } from '../../store/desStore.js';
 
-export function Header() {
-  const { result, mode } = useDESStore();
+export function Header({ activeSection = 'input', onSectionClick }) {
+  const { result, mode, setMode } = useDESStore();
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const steps = [
+    { id: 'input', label: 'Initialization' },
+    ...(result ? [
+      { id: 'keysched', label: 'Key Schedule' },
+      { id: 'ip', label: 'Initial IP' },
+      { id: 'rounds', label: 'Feistel Rounds' },
+      { id: 'ipinv', label: 'Inverse IP-1' },
+      { id: 'result', label: 'Final Result' }
+    ] : [])
+  ];
+
+  const handleLinkClick = (id) => {
+    setMenuOpen(false);
+    if (onSectionClick) {
+      onSectionClick(id);
+    }
+  };
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-brutal-yellow border-b-4 border-black px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between select-none shadow-[0_4px_0_#000]">
+    <header className="sticky top-0 z-50 w-full bg-brutal-yellow border-b-4 border-black px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between select-none shadow-[0_4px_0_#000] relative">
       {/* Title / Logo */}
-      <div className="flex items-center gap-2 sm:gap-3">
-        <div className="hidden sm:flex w-10 h-10 bg-black items-center justify-center border-2 border-black text-brutal-yellow shadow-brutal-sm shrink-0">
-          <Terminal className="w-6 h-6 stroke-[3px]" />
+      <div className="flex items-center gap-2">
+        <div className="hidden sm:flex w-9 h-9 bg-black items-center justify-center border-2 border-black text-brutal-yellow shadow-brutal-sm shrink-0">
+          <Terminal className="w-5 h-5 stroke-[3px]" />
         </div>
         <div>
-          <h1 className="font-syne font-black text-lg sm:text-xl md:text-2xl tracking-tighter leading-none text-black">
-            DES_SIMULATOR
+          <h1 className="font-syne font-black text-base sm:text-lg md:text-xl tracking-tighter leading-none text-black">
+            DES SIMULATOR
           </h1>
           <span className="font-mono text-[8px] sm:text-[9px] uppercase tracking-widest font-black text-black/50 block mt-0.5">
             Digital Encryption Standard
@@ -22,17 +41,11 @@ export function Header() {
         </div>
       </div>
 
-      {/* Info Status badges */}
-      <div className="flex items-center gap-2 sm:gap-4">
-        {/* Watermark badge */}
-        <div className="hidden lg:flex flex-col text-right font-mono text-[9px] uppercase tracking-tighter text-black/60 border-r-2 border-black/20 pr-4 mr-2 leading-tight">
-          <span className="font-black text-black">Imam Rizki Saputra - DES 2026</span>
-          <span>IF UNIBBA - Kriptografi</span>
-        </div>
-
+      {/* Desktop Navigation Badges */}
+      <div className="hidden lg:flex items-center gap-4">
         {/* Mode badge */}
         <div className={`
-          hidden md:flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 border-3 border-black text-[10px] sm:text-xs font-grotesk font-black uppercase shadow-brutal-sm
+          flex items-center gap-2 px-3.5 py-1.5 border-3 border-black text-xs font-grotesk font-black uppercase shadow-brutal-sm
           ${mode === 'encrypt' ? 'bg-brutal-purple' : 'bg-brutal-coral'}
         `}>
           <Shield className="w-3.5 h-3.5 stroke-[3px]" />
@@ -41,13 +54,71 @@ export function Header() {
 
         {/* Status indicator */}
         <div className={`
-          flex items-center gap-1.5 px-2.5 py-1 sm:px-3.5 sm:py-1.5 border-3 border-black text-[9px] sm:text-xs font-grotesk font-black uppercase shadow-brutal-sm shrink-0
+          flex items-center gap-2 px-3.5 py-1.5 border-3 border-black text-xs font-grotesk font-black uppercase shadow-brutal-sm
           ${result ? 'bg-brutal-green text-black' : 'bg-brutal-cream text-black/40'}
         `}>
-          <span className={`w-2 h-2 border-2 border-black ${result ? 'bg-black animate-pulse' : 'bg-transparent'}`}></span>
+          <span className={`w-2.5 h-2.5 border-2 border-black ${result ? 'bg-black animate-pulse' : 'bg-transparent'}`}></span>
           {result ? 'AKTIF' : 'SIAP'}
         </div>
       </div>
+
+      {/* Mobile/Tablet Menu Button */}
+      <div className="flex lg:hidden items-center gap-2">
+        {/* Mode display badge on mobile */}
+        <div className={`
+          flex items-center gap-1 px-2.5 py-1 border-2 border-black text-[9px] font-mono font-black uppercase shadow-brutal-sm
+          ${mode === 'encrypt' ? 'bg-brutal-purple' : 'bg-brutal-coral'}
+        `}>
+          {mode === 'encrypt' ? 'ENKRIPSI' : 'DEKRIPSI'}
+        </div>
+
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="w-9 h-9 bg-black border-2 border-black text-white flex items-center justify-center shadow-brutal-sm active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all duration-75"
+          style={{ borderRadius: '0px' }}
+          aria-label="Toggle navigation menu"
+        >
+          {menuOpen ? <X className="w-5 h-5 stroke-[3px]" /> : <Menu className="w-5 h-5 stroke-[3px]" />}
+        </button>
+      </div>
+
+      {/* Mobile Collapsible Dropdown Drawer Menu */}
+      {menuOpen && (
+        <div className="absolute top-[100%] left-0 w-full bg-brutal-white border-b-4 border-black p-4 flex flex-col gap-4 shadow-brutal-lg z-50">
+          <div className="flex items-center justify-between border-b-2 border-black pb-2">
+            <span className="font-grotesk font-black text-xs uppercase text-black/40">Status Simulator</span>
+            
+            {/* Status indicator inside mobile menu */}
+            <div className={`
+              flex items-center gap-1.5 px-2 py-0.5 border-2 border-black text-[10px] font-grotesk font-black uppercase
+              ${result ? 'bg-brutal-green text-black' : 'bg-brutal-cream text-black/30'}
+            `}>
+              <span className={`w-2 h-2 border border-black ${result ? 'bg-black animate-pulse' : 'bg-transparent'}`}></span>
+              {result ? 'AKTIF' : 'SIAP'}
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <span className="font-grotesk font-black text-xs uppercase text-black/40 mb-1">Pilih Bagian / Steps</span>
+            {steps.map((step) => {
+              const isActive = activeSection === step.id;
+              return (
+                <button
+                  key={step.id}
+                  onClick={() => handleLinkClick(step.id)}
+                  className={`
+                    w-full text-left px-4 py-2.5 border-2 border-black font-grotesk font-black text-xs uppercase transition-colors
+                    ${isActive ? 'bg-brutal-yellow text-black' : 'bg-brutal-white text-black/60 hover:bg-brutal-cream'}
+                  `}
+                  style={{ borderRadius: '0px' }}
+                >
+                  {step.label}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
     </header>
   );
 }
