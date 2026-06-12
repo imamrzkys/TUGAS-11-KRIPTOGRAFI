@@ -32,10 +32,10 @@ export function Header({ activeSection = 'input', onSectionClick }) {
           <Terminal className="w-5 h-5 stroke-[3px]" />
         </div>
         <div>
-          <h1 className="font-syne font-black text-sm sm:text-base md:text-lg lg:text-xl tracking-tighter leading-none text-black">
+          <h1 className="font-syne font-black text-[11px] xs:text-xs sm:text-base md:text-lg lg:text-xl tracking-[-0.05em] leading-none text-black">
             DES SIMULATOR
           </h1>
-          <span className="font-mono text-[7px] sm:text-[8px] md:text-[9px] uppercase tracking-widest font-black text-black/50 block mt-0.5">
+          <span className="font-mono text-[6px] xs:text-[7px] sm:text-[8px] md:text-[9px] uppercase tracking-wide font-black text-black/50 block mt-0.5">
             Digital Encryption Standard
           </span>
         </div>
