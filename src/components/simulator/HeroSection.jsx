@@ -1,10 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 /**
- * Neubrutalist Hero Header with snappy entrance animations and hover interactive badges.
+ * Neubrutalist Hero Header with typewriter animation and interactive badges.
  */
 export function HeroSection() {
+  const [displayedText, setDisplayedText] = useState('');
+  const fullText = 'SIMULATOR';
+  
+  useEffect(() => {
+    let currentIndex = 0;
+    const typingInterval = setInterval(() => {
+      if (currentIndex <= fullText.length) {
+        setDisplayedText(fullText.slice(0, currentIndex));
+        currentIndex++;
+      } else {
+        clearInterval(typingInterval);
+      }
+    }, 100); // 100ms per karakter
+    
+    return () => clearInterval(typingInterval);
+  }, []);
+
   return (
     <section className="relative w-full py-8 md:py-12 border-b-4 border-black bg-brutal-cream overflow-hidden px-6 md:px-12 flex flex-col md:flex-row md:items-center justify-between gap-8 md:gap-12">
       {/* Title */}
@@ -15,7 +32,11 @@ export function HeroSection() {
           transition={{ duration: 0.35, ease: 'easeOut' }}
           className="font-syne font-black text-5xl sm:text-7xl lg:text-8xl leading-[0.9] tracking-tighter uppercase text-black select-none"
         >
-          DES<br />SIMULATOR
+          DES<br />
+          <span className="inline-block">
+            {displayedText}
+            <span className="inline-block w-1 h-[0.9em] bg-black ml-1 animate-pulse"></span>
+          </span>
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 10 }}
