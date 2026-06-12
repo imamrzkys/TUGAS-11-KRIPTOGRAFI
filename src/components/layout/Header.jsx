@@ -32,49 +32,47 @@ export function Header({ activeSection = 'input', onSectionClick }) {
           <Terminal className="w-5 h-5 stroke-[3px]" />
         </div>
         <div>
-          <h1 className="font-syne font-black text-base sm:text-lg md:text-xl tracking-tighter leading-none text-black">
+          <h1 className="font-syne font-black text-sm sm:text-base md:text-lg lg:text-xl tracking-tighter leading-none text-black">
             DES SIMULATOR
           </h1>
-          <span className="font-mono text-[8px] sm:text-[9px] uppercase tracking-widest font-black text-black/50 block mt-0.5">
+          <span className="font-mono text-[7px] sm:text-[8px] md:text-[9px] uppercase tracking-widest font-black text-black/50 block mt-0.5">
             Digital Encryption Standard
           </span>
         </div>
       </div>
 
-      {/* Desktop Navigation Badges */}
-      <div className="hidden lg:flex items-center gap-4">
-        {/* Mode badge */}
+      {/* Navigation Badges and Menu Trigger */}
+      <div className="flex items-center gap-3">
+        {/* Mode badge (visible on md+) */}
         <div className={`
-          flex items-center gap-2 px-3.5 py-1.5 border-3 border-black text-xs font-grotesk font-black uppercase shadow-brutal-sm
+          hidden md:flex items-center gap-2 px-3.5 py-1.5 border-3 border-black text-xs font-grotesk font-black uppercase shadow-brutal-sm
           ${mode === 'encrypt' ? 'bg-brutal-purple' : 'bg-brutal-coral'}
         `}>
           <Shield className="w-3.5 h-3.5 stroke-[3px]" />
           Mode: {mode === 'encrypt' ? 'ENKRIPSI' : 'DEKRIPSI'}
         </div>
 
-        {/* Status indicator */}
+        {/* Status indicator (visible on md+) */}
         <div className={`
-          flex items-center gap-2 px-3.5 py-1.5 border-3 border-black text-xs font-grotesk font-black uppercase shadow-brutal-sm
+          hidden md:flex items-center gap-2 px-3.5 py-1.5 border-3 border-black text-xs font-grotesk font-black uppercase shadow-brutal-sm
           ${result ? 'bg-brutal-green text-black' : 'bg-brutal-cream text-black/40'}
         `}>
           <span className={`w-2.5 h-2.5 border-2 border-black ${result ? 'bg-black animate-pulse' : 'bg-transparent'}`}></span>
           {result ? 'AKTIF' : 'SIAP'}
         </div>
-      </div>
 
-      {/* Mobile/Tablet Menu Button */}
-      <div className="flex lg:hidden items-center gap-2">
-        {/* Mode display badge on mobile */}
+        {/* Compact Mode display (visible on mobile only, hidden on md+) */}
         <div className={`
-          flex items-center gap-1 px-2.5 py-1 border-2 border-black text-[9px] font-mono font-black uppercase shadow-brutal-sm
+          flex md:hidden items-center gap-1 px-2.5 py-1 border-2 border-black text-[9px] font-mono font-black uppercase shadow-brutal-sm
           ${mode === 'encrypt' ? 'bg-brutal-purple' : 'bg-brutal-coral'}
         `}>
           {mode === 'encrypt' ? 'ENKRIPSI' : 'DEKRIPSI'}
         </div>
 
+        {/* Hamburger Menu toggle (always visible - mobile & desktop) */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="w-9 h-9 bg-black border-2 border-black text-white flex items-center justify-center shadow-brutal-sm active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all duration-75"
+          className="w-9 h-9 bg-black border-2 border-black text-white flex items-center justify-center shadow-brutal-sm active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all duration-75 hover:bg-brutal-yellow hover:text-black"
           style={{ borderRadius: '0px' }}
           aria-label="Toggle navigation menu"
         >
@@ -82,9 +80,9 @@ export function Header({ activeSection = 'input', onSectionClick }) {
         </button>
       </div>
 
-      {/* Mobile Collapsible Dropdown Drawer Menu */}
+      {/* Collapsible Dropdown Drawer Menu (Mobile & Desktop) */}
       {menuOpen && (
-        <div className="absolute top-[100%] left-0 w-full bg-brutal-white border-b-4 border-black p-4 flex flex-col gap-4 shadow-brutal-lg z-50">
+        <div className="absolute top-[100%] left-0 w-full bg-brutal-white border-b-4 border-black p-4 sm:p-6 flex flex-col gap-4 shadow-brutal-lg z-50">
           <div className="flex items-center justify-between border-b-2 border-black pb-2">
             <span className="font-grotesk font-black text-xs uppercase text-black/40">Status Simulator</span>
             
@@ -100,22 +98,24 @@ export function Header({ activeSection = 'input', onSectionClick }) {
 
           <div className="flex flex-col gap-2">
             <span className="font-grotesk font-black text-xs uppercase text-black/40 mb-1">Pilih Bagian / Steps</span>
-            {steps.map((step) => {
-              const isActive = activeSection === step.id;
-              return (
-                <button
-                  key={step.id}
-                  onClick={() => handleLinkClick(step.id)}
-                  className={`
-                    w-full text-left px-4 py-2.5 border-2 border-black font-grotesk font-black text-xs uppercase transition-colors
-                    ${isActive ? 'bg-brutal-yellow text-black' : 'bg-brutal-white text-black/60 hover:bg-brutal-cream'}
-                  `}
-                  style={{ borderRadius: '0px' }}
-                >
-                  {step.label}
-                </button>
-              );
-            })}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+              {steps.map((step) => {
+                const isActive = activeSection === step.id;
+                return (
+                  <button
+                    key={step.id}
+                    onClick={() => handleLinkClick(step.id)}
+                    className={`
+                      w-full text-left px-4 py-2.5 border-2 border-black font-grotesk font-black text-xs uppercase transition-colors
+                      ${isActive ? 'bg-brutal-yellow text-black' : 'bg-brutal-white text-black/60 hover:bg-brutal-cream'}
+                    `}
+                    style={{ borderRadius: '0px' }}
+                  >
+                    {step.label}
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
       )}

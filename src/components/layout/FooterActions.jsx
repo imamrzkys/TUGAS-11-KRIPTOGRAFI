@@ -58,7 +58,7 @@ export function FooterActions() {
 
   return (
     <>
-      {/* Mobile Sticky Bottom Bar */}
+      {/* Mobile Sticky Bottom Bar - ONLY visible on mobile (< md) */}
       <div className="md:hidden fixed bottom-0 left-0 w-full z-40 bg-brutal-yellow border-t-4 border-black px-2 py-2 sm:px-4 sm:py-3 flex items-center justify-around gap-1 sm:gap-2 shadow-[0_-4px_0_#000]">
         <button
           onClick={runSimulation}
@@ -95,7 +95,7 @@ export function FooterActions() {
         </button>
       </div>
 
-      {/* Desktop Desktop bar, inline at the bottom of configurations */}
+      {/* Desktop Action Bar - ONLY visible on desktop (>= md), inline at the bottom of configurations */}
       <div className="hidden md:flex flex-wrap items-center gap-4 bg-brutal-surface p-4 border-3 border-black shadow-brutal-sm">
         <NeoButton variant="yellow" onClick={runSimulation} className="flex-1 min-w-[120px]">
           <Play className="w-4 h-4 stroke-[3px]" />

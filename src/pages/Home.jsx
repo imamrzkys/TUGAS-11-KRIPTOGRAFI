@@ -102,9 +102,7 @@ export function Home() {
               <InputPanel />
             </div>
 
-
-
-            {/* Desktop Action Buttons Row */}
+            {/* Desktop Action Buttons Row (inline after input panel) */}
             <div className="hidden md:block">
               <FooterActions />
             </div>
@@ -153,8 +151,10 @@ export function Home() {
         </main>
       </div>
 
-      {/* Mobile Sticky Footer Action controls */}
-      <FooterActions />
+      {/* Mobile Sticky Footer Action controls - ONLY appears on mobile */}
+      <div className="md:hidden">
+        <FooterActions />
+      </div>
 
       {/* FLOATING BACK TO TOP BUTTON */}
       <AnimatePresence>
