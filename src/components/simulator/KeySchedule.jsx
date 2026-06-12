@@ -105,7 +105,7 @@ export function KeySchedule() {
           </p>
 
           {/* Desktop Table View */}
-          <div className="hidden md:block overflow-x-auto brutal-border-3">
+          <div className="hidden md:block overflow-x-auto border-3 border-black">
             <table className="w-full text-left font-mono text-xs divide-y-3 divide-black border-collapse">
               <thead className="bg-brutal-surface font-grotesk font-extrabold uppercase">
                 <tr>

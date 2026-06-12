@@ -84,7 +84,7 @@ export function InputPanel() {
               onChange={(e) => setPlaintext(e.target.value)}
               maxLength={plaintextFormat === 'hex' ? 16 : 64}
               className={`
-                w-full p-4 font-mono text-lg brutal-border-3 bg-brutal-cream text-black outline-none transition-colors
+                w-full p-4 font-mono text-lg border-3 border-black bg-brutal-cream text-black outline-none transition-colors
                 ${validationErrors.plaintext ? 'border-brutal-coral focus:outline-brutal-coral' : 'border-black focus:bg-brutal-purple/15'}
               `}
               placeholder={plaintextFormat === 'hex' ? '0123456789ABCDEF' : '01000000...'}
@@ -105,7 +105,7 @@ export function InputPanel() {
               <div className="text-[10px] font-mono font-bold text-black/50 uppercase mb-2">
                 Representasi Grid Biner
               </div>
-              <div className="bg-brutal-surface p-3 brutal-border-3">
+              <div className="bg-brutal-surface p-3 border-3 border-black">
                 <BinaryGrid
                   binaryString={getPlaintextBinaryString()}
                   highlightColor="purple"
@@ -154,7 +154,7 @@ export function InputPanel() {
               onChange={(e) => setKey(e.target.value)}
               maxLength={keyFormat === 'hex' ? 16 : 64}
               className={`
-                w-full p-4 font-mono text-lg brutal-border-3 bg-brutal-cream text-black outline-none transition-colors
+                w-full p-4 font-mono text-lg border-3 border-black bg-brutal-cream text-black outline-none transition-colors
                 ${validationErrors.key ? 'border-brutal-coral focus:outline-brutal-coral' : 'border-black focus:bg-brutal-purple/15'}
               `}
               placeholder={keyFormat === 'hex' ? '133457799BBCDFF1' : '00010011...'}
@@ -175,7 +175,7 @@ export function InputPanel() {
               <div className="text-[10px] font-mono font-bold text-black/50 uppercase mb-2 flex justify-between">
                 <span>Pratinjau Bit Paritas (Bit abu-abu diabaikan dalam DES)</span>
               </div>
-              <div className="bg-brutal-surface p-3 brutal-border-3">
+              <div className="bg-brutal-surface p-3 border-3 border-black">
                 <BinaryGrid
                   binaryString={getKeyBinaryString()}
                   dimIndices={parityIndices}

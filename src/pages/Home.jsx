@@ -12,6 +12,8 @@ import { FeistelRounds } from '../components/simulator/FeistelRounds.jsx';
 import { InversePermutation } from '../components/simulator/InversePermutation.jsx';
 import { FinalCipher } from '../components/simulator/FinalCipher.jsx';
 import { ProcessingEngine } from '../components/simulator/ProcessingEngine.jsx';
+import { StepIndicator } from '../components/common/StepIndicator.jsx';
+import { NeoCard } from '../components/common/NeoCard.jsx';
 import { ChevronUp } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -63,7 +65,7 @@ export function Home() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-brutal-cream pb-24 md:pb-8">
+    <div className="min-h-screen flex flex-col bg-brutal-cream pb-24 md:pb-8 overflow-x-hidden">
       {/* Simulation engine loading animation */}
       <ProcessingEngine />
 
@@ -71,13 +73,13 @@ export function Home() {
       <Header />
 
       {/* Main Container */}
-      <div className="flex-1 flex relative">
+      <div className="flex-1 flex relative overflow-x-hidden">
         
         {/* DESKTOP FIXED SIDEBAR NAVIGATION */}
         <Sidebar activeSection={activeSection} onSectionClick={handleSectionClick} />
 
         {/* MAIN VISUAL WORKPLACE CONTAINER */}
-        <main className="flex-1 min-w-0">
+        <main className="flex-1 min-w-0 overflow-x-hidden">
           
           {/* Hero Section */}
           <HeroSection />
@@ -105,6 +107,15 @@ export function Home() {
             <div id="input">
               <InputPanel />
             </div>
+
+            {/* Mobile-only Simulation Pipeline Step Indicator */}
+            {result && (
+              <div className="block lg:hidden">
+                <NeoCard title="ALUR PIPELINE SIMULASI">
+                  <StepIndicator activeSection={activeSection} onSectionClick={handleSectionClick} />
+                </NeoCard>
+              </div>
+            )}
 
             {/* Desktop Action Buttons Row */}
             <div className="hidden md:block">
