@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none">
+  <!-- Hard offset shadow -->
+  <rect x="8" y="8" width="52" height="52" fill="#000000" />
+  <!-- Neubrutalist box -->
+  <rect x="4" y="4" width="52" height="52" fill="#FFD54A" stroke="#000000" stroke-width="4" />
+  <!-- Lock loop -->
+  <path d="M24 24 c0-5 3-8 8-8 s8 3 8 8 v6 h-16 z" stroke="#000000" stroke-width="4" stroke-linecap="round" fill="none" />
+  <!-- Lock body inner white display -->
+  <rect x="18" y="30" width="28" height="18" fill="#FFFFFF" stroke="#000000" stroke-width="3" />
+  <!-- Keyhole dot and slot -->
+  <circle cx="32" cy="37" r="2" fill="#000000" />
+  <path d="M32 39 v4" stroke="#000000" stroke-width="2.5" stroke-linecap="round" />
+</svg>
