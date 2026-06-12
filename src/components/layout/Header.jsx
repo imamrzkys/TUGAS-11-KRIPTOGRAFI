@@ -25,24 +25,24 @@ export function Header({ activeSection = 'input', onSectionClick }) {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-brutal-yellow border-b-4 border-black px-2 sm:px-6 py-2 sm:py-4 flex items-center justify-between select-none shadow-[0_4px_0_#000] relative gap-1.5 sm:gap-2">
+    <header className="sticky top-0 z-50 w-full bg-brutal-yellow border-b-4 border-black px-1.5 sm:px-6 py-2 sm:py-4 flex items-center justify-between select-none shadow-[0_4px_0_#000] relative gap-1 sm:gap-2">
       {/* Title / Logo */}
-      <div className="flex items-center gap-1.5 sm:gap-2 min-w-0 flex-shrink overflow-hidden">
+      <div className="flex items-center gap-1 sm:gap-2 min-w-0 flex-shrink overflow-hidden">
         <div className="hidden sm:flex w-9 h-9 bg-black items-center justify-center border-2 border-black text-brutal-yellow shadow-brutal-sm shrink-0">
           <Terminal className="w-5 h-5 stroke-[3px]" />
         </div>
         <div className="min-w-0 flex-shrink">
-          <h1 className="font-syne font-black text-[10.5px] xs:text-xs sm:text-base md:text-lg lg:text-xl tracking-[-0.05em] sm:tracking-tighter leading-tight text-black truncate">
+          <h1 className="font-syne font-black text-[9px] xs:text-xs sm:text-base md:text-lg lg:text-xl tracking-[-0.08em] sm:tracking-tighter leading-tight text-black">
             DES SIMULATOR
           </h1>
-          <span className="font-mono text-[6px] xs:text-[7px] sm:text-[8px] md:text-[9px] uppercase tracking-tight sm:tracking-wide font-black text-black/50 block mt-0.5 truncate">
+          <span className="font-mono text-[5.5px] xs:text-[7px] sm:text-[8px] md:text-[9px] uppercase tracking-tighter sm:tracking-wide font-black text-black/50 block mt-0.5">
             Digital Encryption Standard
           </span>
         </div>
       </div>
 
       {/* Navigation Badges and Menu Trigger */}
-      <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3 flex-shrink-0">
+      <div className="flex items-center gap-1 sm:gap-2 md:gap-3 flex-shrink-0">
         {/* Mode badge (visible on md+) */}
         <div className={`
           hidden md:flex items-center gap-2 px-3.5 py-1.5 border-3 border-black text-xs font-grotesk font-black uppercase shadow-brutal-sm
@@ -63,7 +63,7 @@ export function Header({ activeSection = 'input', onSectionClick }) {
 
         {/* Compact Mode display (visible on mobile only, hidden on md+) */}
         <div className={`
-          flex md:hidden items-center justify-center px-1.5 py-1 border-2 border-black text-[8px] font-mono font-black uppercase shadow-brutal-sm flex-shrink-0 min-w-[36px]
+          flex md:hidden items-center justify-center px-1 py-0.5 border-2 border-black text-[7px] font-mono font-black uppercase shadow-brutal-sm flex-shrink-0 min-w-[32px]
           ${mode === 'encrypt' ? 'bg-brutal-purple' : 'bg-brutal-coral'}
         `}>
           {mode === 'encrypt' ? 'ENC' : 'DEC'}
@@ -72,11 +72,11 @@ export function Header({ activeSection = 'input', onSectionClick }) {
         {/* Hamburger Menu toggle (always visible - mobile & desktop) */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="w-[36px] h-[36px] sm:w-9 sm:h-9 bg-black border-2 border-black text-white flex items-center justify-center shadow-brutal-sm active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all duration-75 hover:bg-brutal-yellow hover:text-black flex-shrink-0"
+          className="w-[32px] h-[32px] sm:w-9 sm:h-9 bg-black border-2 border-black text-white flex items-center justify-center shadow-brutal-sm active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all duration-75 hover:bg-brutal-yellow hover:text-black flex-shrink-0"
           style={{ borderRadius: '0px' }}
           aria-label="Toggle navigation menu"
         >
-          {menuOpen ? <X className="w-4 h-4 sm:w-5 sm:h-5 stroke-[3px]" /> : <Menu className="w-4 h-4 sm:w-5 sm:h-5 stroke-[3px]" />}
+          {menuOpen ? <X className="w-3.5 h-3.5 sm:w-5 sm:h-5 stroke-[3px]" /> : <Menu className="w-3.5 h-3.5 sm:w-5 sm:h-5 stroke-[3px]" />}
         </button>
       </div>
 
