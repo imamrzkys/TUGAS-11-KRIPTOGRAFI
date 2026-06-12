@@ -6,9 +6,9 @@ import { motion } from 'framer-motion';
  */
 export function HeroSection() {
   return (
-    <section className="relative w-full py-8 md:py-12 border-b-4 border-black bg-brutal-cream overflow-hidden px-6 md:px-12 flex flex-col md:flex-row md:items-center justify-between gap-6">
+    <section className="relative w-full py-8 md:py-12 border-b-4 border-black bg-brutal-cream overflow-hidden px-6 md:px-12 flex flex-col md:flex-row md:items-center justify-between gap-8 md:gap-12">
       {/* Title */}
-      <div className="flex-1">
+      <div className="flex-1 max-w-2xl">
         <motion.h2
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
@@ -36,7 +36,7 @@ export function HeroSection() {
       </div>
 
       {/* Badges Column */}
-      <div className="flex flex-wrap gap-4 items-center">
+      <div className="flex flex-wrap gap-4 items-center md:flex-col md:items-end flex-shrink-0">
         <motion.div
           initial={{ scale: 0, rotate: -15 }}
           animate={{ scale: 1, rotate: -2 }}
