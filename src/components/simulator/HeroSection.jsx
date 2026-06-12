@@ -32,8 +32,8 @@ export function HeroSection() {
     
     const typingSpeed = 150; // Lebih lambat lagi (150ms per karakter - sangat smooth)
     const deleteSpeed = 70; // Lebih lambat saat hapus (70ms - smooth)
-    const pauseAfterTyping = 4000; // Pause 4 detik setelah selesai ngetik
-    const transitionDelay = 1000; // Delay 1 detik untuk transisi bersih
+    const pauseAfterTyping = 3000; // Pause 3 detik setelah selesai ngetik
+    const transitionDelay = 3000; // Delay 3 detik untuk transisi bersih
     
     const timeout = setTimeout(() => {
       if (!isDeleting) {
