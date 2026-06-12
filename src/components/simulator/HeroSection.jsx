@@ -2,50 +2,51 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 /**
- * Neubrutalist Hero Header with rotating typewriter animation and interactive badges.
+ * Neubrutalist Hero Header with rotating typewriter animation (3 phrases, 3 lines each)
  */
 export function HeroSection() {
   const [displayedText, setDisplayedText] = useState('');
   const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   
-  // Array judul yang akan berganti-ganti (lebih pendek untuk mobile)
+  // 3 judul menarik, masing-masing 3 baris pendek (pas untuk mobile)
   const phrases = [
-    'SIMULATOR',
-    'ALGORITHM',
-    'ENCRYPTION',
-    'CRYPTOGRAPHY',
-    'FEISTEL NET',
-    'S-BOX SYSTEM'
+    ['DATA', 'ENCRYPTION', 'STANDARD'],
+    ['DIGITAL', 'SECURITY', 'SYSTEM'],
+    ['CRYPTO', 'ALGORITHM', 'TOOL']
   ];
   
   useEffect(() => {
     const currentPhrase = phrases[currentPhraseIndex];
+    const fullText = currentPhrase.join('\n');
     
-    const typingSpeed = isDeleting ? 50 : 100; // Lebih cepat saat hapus
-    const pauseBeforeDelete = 2000; // Pause 2 detik sebelum hapus
-    const pauseBeforeType = 500; // Pause 0.5 detik sebelum ketik baru
+    const typingSpeed = 80; // Kecepatan ngetik (80ms per karakter - halus)
+    const deleteSpeed = 40; // Kecepatan hapus (40ms per karakter - lebih cepat)
+    const pauseAfterTyping = 3000; // Pause 3 detik setelah selesai ngetik
+    const pauseAfterDeleting = 500; // Pause 0.5 detik setelah selesai hapus
     
     const timeout = setTimeout(() => {
       if (!isDeleting) {
         // Mode TYPING
-        if (displayedText.length < currentPhrase.length) {
-          setDisplayedText(currentPhrase.slice(0, displayedText.length + 1));
+        if (displayedText.length < fullText.length) {
+          setDisplayedText(fullText.slice(0, displayedText.length + 1));
         } else {
-          // Selesai ngetik, pause dulu baru mulai hapus
-          setTimeout(() => setIsDeleting(true), pauseBeforeDelete);
+          // Selesai ngetik, pause dulu sebelum hapus
+          setTimeout(() => setIsDeleting(true), pauseAfterTyping);
         }
       } else {
         // Mode DELETING
         if (displayedText.length > 0) {
           setDisplayedText(displayedText.slice(0, -1));
         } else {
-          // Selesai hapus, pindah ke judul berikutnya
+          // Selesai hapus, pause sebentar lalu pindah ke judul berikutnya
           setIsDeleting(false);
-          setCurrentPhraseIndex((prev) => (prev + 1) % phrases.length);
+          setTimeout(() => {
+            setCurrentPhraseIndex((prev) => (prev + 1) % phrases.length);
+          }, pauseAfterDeleting);
         }
       }
-    }, isDeleting ? typingSpeed : (displayedText.length === currentPhrase.length ? pauseBeforeDelete : typingSpeed));
+    }, isDeleting ? deleteSpeed : (displayedText.length === fullText.length ? 0 : typingSpeed));
     
     return () => clearTimeout(timeout);
   }, [displayedText, isDeleting, currentPhraseIndex]);
@@ -58,13 +59,10 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.35, ease: 'easeOut' }}
-          className="font-syne font-black text-5xl sm:text-7xl lg:text-8xl leading-[0.9] tracking-tighter uppercase text-black select-none"
+          className="font-syne font-black text-5xl sm:text-7xl lg:text-8xl leading-[0.9] tracking-tighter uppercase text-black select-none whitespace-pre-line"
         >
-          DES<br />
-          <span className="inline-block min-h-[1.1em]">
-            {displayedText}
-            <span className="inline-block w-1 h-[0.9em] bg-black ml-1 animate-pulse align-middle"></span>
-          </span>
+          {displayedText}
+          <span className="inline-block w-1 h-[0.9em] bg-black ml-1 animate-pulse align-middle"></span>
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 10 }}
